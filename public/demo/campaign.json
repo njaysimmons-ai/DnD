@@ -1,0 +1,123 @@
+{
+  "name": "The Lanternfall Chronicles",
+  "roster": [
+    { "player": "Jordan", "character": "", "isDM": true },
+    { "player": "Sam", "character": "Thorin Ashbeard", "isDM": false },
+    { "player": "Riley", "character": "Wren", "isDM": false },
+    { "player": "Alex", "character": "Sister Mabel", "isDM": false }
+  ],
+  "characters": [
+    { "id": "thorin", "name": "Thorin Ashbeard", "kind": "pc", "player": "Sam", "description": "A dwarf fighter with a soot-streaked beard and no patience for riddles.", "color": "#b5562b", "emblem": "hammer" },
+    { "id": "wren", "name": "Wren", "kind": "pc", "player": "Riley", "description": "A half-elf rogue who pockets anything shiny, including, once, a live frog.", "color": "#3f8f6b", "emblem": "dagger" },
+    { "id": "mabel", "name": "Sister Mabel", "kind": "pc", "player": "Alex", "description": "A halfling cleric of the Dawn who heals generously and judges loudly.", "color": "#d8b45a", "emblem": "holy" },
+    { "id": "grell", "name": "Old Grell", "kind": "npc", "player": null, "description": "Innkeeper of the Drowned Lantern. Knows every rumour and sells half of them.", "color": "#7a6a5a", "emblem": "coin" },
+    { "id": "hollow-knight", "name": "The Hollow Knight", "kind": "creature", "player": null, "description": "An empty suit of armour that guards the crypt, stirred by a green flame.", "color": "#3d6b5a", "emblem": "skull" }
+  ],
+  "locations": [
+    { "id": "drowned-lantern", "name": "The Drowned Lantern", "setting": "tavern", "description": "A crooked inn on the edge of Fenmoor with a lantern nailed above the door." },
+    { "id": "fen-road", "name": "The Fen Road", "setting": "road", "description": "A muddy track that winds through the marsh toward the old hills." },
+    { "id": "whisperwood", "name": "Whisperwood", "setting": "forest", "description": "Black pines where the fog speaks in voices you almost recognise." },
+    { "id": "lanternfall-crypt", "name": "Lanternfall Crypt", "setting": "dungeon", "description": "A sealed crypt beneath the hills, lit by flames that never burn out." },
+    { "id": "hilltop-camp", "name": "Hilltop Camp", "setting": "camp", "description": "A windy rise above the crypt where the party made camp." }
+  ],
+  "chapters": [
+    {
+      "id": "demo-1",
+      "sessionId": "demo-1",
+      "number": 1,
+      "date": "2026-10-03",
+      "title": "The Green Flame",
+      "recap": "Hired by a nervous innkeeper, the party braved the Fen Road and the whispering forest to reach Lanternfall Crypt, where an empty suit of armour stood guard over a stolen flame.",
+      "scenes": [
+        {
+          "title": "A Job at the Drowned Lantern",
+          "location_id": "drowned-lantern",
+          "time_of_day": "night",
+          "mood": "festive",
+          "weather": "clear",
+          "characters_present": ["grell", "thorin", "wren", "mabel"],
+          "beats": [
+            { "kind": "narration", "speaker_id": null, "text": "Rain hammers the shutters of the Drowned Lantern. Inside, the fire is warm, the ale is warmer, and the innkeeper keeps glancing at the door." },
+            { "kind": "dialogue", "speaker_id": "grell", "text": "The lights in the hills went green three nights ago. Since then, nobody who's walked the Fen Road has come back." },
+            { "kind": "dialogue", "speaker_id": "thorin", "text": "Green lights. Wonderful. How much does green pay?" },
+            { "kind": "dialogue", "speaker_id": "grell", "text": "Fifty gold, and you never pay for a drink here again." },
+            { "kind": "action", "speaker_id": "wren", "text": "Wren quietly slides a spoon off the bar and into her sleeve." },
+            { "kind": "dialogue", "speaker_id": "mabel", "text": "Put the spoon back, Wren. We'll take the job." }
+          ],
+          "choice": null
+        },
+        {
+          "title": "The Fen Road",
+          "location_id": "fen-road",
+          "time_of_day": "dusk",
+          "mood": "tense",
+          "weather": "rain",
+          "characters_present": ["thorin", "wren", "mabel"],
+          "beats": [
+            { "kind": "narration", "speaker_id": null, "text": "By the next evening the road has turned to soup. A signpost leans at the fork, its words scratched out." },
+            { "kind": "action", "speaker_id": "wren", "text": "Wren crouches by the mud and finds boot prints heading left, toward the trees. None coming back." },
+            { "kind": "dialogue", "speaker_id": "thorin", "text": "Left goes through the forest. Right goes the long way round the marsh. I hate both." },
+            { "kind": "dialogue", "speaker_id": "mabel", "text": "If people went left and didn't return, then left is where the answers are." }
+          ],
+          "choice": {
+            "prompt": "The road forks in the rain. Which way?",
+            "options": [
+              { "text": "Follow the boot prints into Whisperwood.", "outcome": "The party steps off the road and into the pines. The rain stops at the treeline, as if the forest had shut a door behind them.", "chosen": true },
+              { "text": "Take the long way around the marsh.", "outcome": "Two days of leeches and cold feet later, the party reaches the hills, but the crypt's door already stands open, and something has left it.", "chosen": false }
+            ]
+          }
+        },
+        {
+          "title": "Voices in the Fog",
+          "location_id": "whisperwood",
+          "time_of_day": "night",
+          "mood": "eerie",
+          "weather": "fog",
+          "characters_present": ["thorin", "wren", "mabel"],
+          "beats": [
+            { "kind": "narration", "speaker_id": null, "text": "Fog curls between the pines. Somewhere ahead, someone calls Thorin's name in his mother's voice." },
+            { "kind": "dialogue", "speaker_id": "thorin", "text": "That's not my mother. My mother never once said my name that nicely." },
+            { "kind": "action", "speaker_id": "mabel", "text": "Sister Mabel raises her holy symbol, and a ring of dawn-light pushes the fog back." },
+            { "kind": "narration", "speaker_id": null, "text": "In the light they see it: a stone doorway in the hillside, a faint green glow leaking from the cracks." }
+          ],
+          "choice": null
+        },
+        {
+          "title": "The Hollow Knight",
+          "location_id": "lanternfall-crypt",
+          "time_of_day": "night",
+          "mood": "combat",
+          "weather": "embers",
+          "characters_present": ["hollow-knight", "thorin", "wren", "mabel"],
+          "beats": [
+            { "kind": "narration", "speaker_id": null, "text": "The crypt doors grind open. At the far end, a suit of armour sits on a throne, a green flame burning where its heart should be." },
+            { "kind": "dialogue", "speaker_id": "hollow-knight", "text": "The flame is mine. Leave, or join the others in the dark." },
+            { "kind": "dialogue", "speaker_id": "thorin", "text": "I rolled a natural twenty on being unimpressed." },
+            { "kind": "action", "speaker_id": "thorin", "text": "Thorin charges and brings his hammer down on the knight's helm with a sound like a church bell." },
+            { "kind": "action", "speaker_id": "wren", "text": "While the knight staggers, Wren darts behind it and plucks the green flame out of its chest with a pair of fire tongs she definitely bought for this." },
+            { "kind": "narration", "speaker_id": null, "text": "Without its flame, the armour collapses into a heap of rusted plates." }
+          ],
+          "choice": null
+        },
+        {
+          "title": "Smoke on the Hill",
+          "location_id": "hilltop-camp",
+          "time_of_day": "night",
+          "mood": "calm",
+          "weather": "clear",
+          "characters_present": ["thorin", "wren", "mabel"],
+          "beats": [
+            { "kind": "narration", "speaker_id": null, "text": "They make camp on the hill above the crypt. The green flame flickers inside a lantern, humming softly." },
+            { "kind": "dialogue", "speaker_id": "mabel", "text": "It's warm. It shouldn't be warm. Fire stolen from the dead never is." },
+            { "kind": "dialogue", "speaker_id": "wren", "text": "Dibs on carrying it." },
+            { "kind": "dialogue", "speaker_id": "thorin", "text": "Absolutely not." },
+            { "kind": "narration", "speaker_id": null, "text": "Far below, in the dark of Whisperwood, a second green light blinks open." }
+          ],
+          "choice": null
+        }
+      ],
+      "loot": ["50 gold from Old Grell (to be collected)", "The green flame, in a lantern", "A silver spoon (Wren)"],
+      "plot_threads": ["Who lit the green flame, and why?", "What became of the travellers who never returned?", "A second green light has appeared in Whisperwood."]
+    }
+  ]
+}

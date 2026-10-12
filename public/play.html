@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Table Chronicle — Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="play.css">
+</head>
+<body>
+  <!-- Title screen -->
+  <section id="menu" class="menu">
+    <div class="menu-inner">
+      <a href="/" class="back-link" id="back-to-app">← Back to the app</a>
+      <h1 id="campaign-title">Table Chronicle</h1>
+      <p class="subtitle">Choose a chapter</p>
+      <div id="chapters" class="chapters"></div>
+    </div>
+  </section>
+
+  <!-- Story stage -->
+  <section id="stage" class="stage hidden" aria-live="polite">
+    <div id="backdrop" class="backdrop"></div>
+    <div id="backdrop-next" class="backdrop"></div>
+    <div id="mood" class="mood"></div>
+    <canvas id="weather" class="weather"></canvas>
+    <div id="flash" class="flash"></div>
+
+    <div id="cast" class="cast"></div>
+
+    <header class="hud">
+      <button id="menu-button" title="Chapters (Esc)">☰</button>
+      <div class="hud-title"><span id="hud-chapter"></span><span id="hud-scene"></span></div>
+      <button id="auto-button" title="Auto-play">▶ Auto</button>
+    </header>
+    <div class="progress"><div id="progress-bar"></div></div>
+
+    <div id="scene-card" class="scene-card hidden">
+      <div class="scene-card-location" id="scene-card-location"></div>
+      <div class="scene-card-title" id="scene-card-title"></div>
+    </div>
+
+    <div id="dialogue" class="dialogue">
+      <div id="nameplate" class="nameplate hidden"></div>
+      <p id="line" class="line"></p>
+      <div id="choices" class="choices hidden"></div>
+      <div class="advance-hint">tap ▸</div>
+    </div>
+
+    <div id="ending" class="ending hidden">
+      <div class="ending-inner">
+        <h2 id="ending-title"></h2>
+        <p id="ending-recap" class="ending-recap"></p>
+        <div class="ending-cols">
+          <div><h3>Treasure &amp; rewards</h3><ul id="ending-loot"></ul></div>
+          <div><h3>Threads to follow</h3><ul id="ending-threads"></ul></div>
+        </div>
+        <div class="ending-buttons">
+          <button id="replay-button">↺ Replay</button>
+          <button id="next-chapter-button" class="hidden">Next chapter ▸</button>
+          <button id="ending-menu-button">Chapters</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="play.js"></script>
+</body>
+</html>

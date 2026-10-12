@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Table Chronicle</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>🎲 Table Chronicle</h1>
+    <nav>
+      <button data-tab="record" class="active">Record</button>
+      <button data-tab="sessions">Sessions</button>
+      <button data-tab="party">Party</button>
+      <a href="play.html" class="nav-link">Play ▶</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- RECORD -->
+    <section id="tab-record" class="tab active">
+      <div class="card recorder">
+        <input id="rec-title" placeholder="Session name (e.g. The Sunken Crypt)">
+        <button id="rec-button" class="big-record" aria-label="Start recording">●</button>
+        <div id="rec-time" class="rec-time">00:00:00</div>
+        <canvas id="rec-meter" width="300" height="40"></canvas>
+        <p id="rec-status" class="muted">Put this device in the middle of the table, then tap record.</p>
+      </div>
+      <div class="card tips">
+        <h3>Tips for a good recording</h3>
+        <ul>
+          <li>Plug the device in. Recording a whole session uses a lot of battery.</li>
+          <li>Keep this page open. The screen stays awake while recording.</li>
+          <li>Audio saves every few seconds, so a crash only loses a moment.</li>
+          <li>Prefer your phone's voice memo app? Record there, then upload it from <b>Sessions</b>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SESSIONS -->
+    <section id="tab-sessions" class="tab">
+      <div class="row">
+        <button id="new-session" class="primary">+ New session from a file or transcript</button>
+      </div>
+      <div id="session-list"></div>
+    </section>
+
+    <!-- PARTY -->
+    <section id="tab-party" class="tab">
+      <div class="card">
+        <label>Campaign name <input id="campaign-name"></label>
+        <h3>Who's at the table</h3>
+        <p class="muted">This helps the transcription spell names right and tells Claude who plays which character.</p>
+        <div id="roster"></div>
+        <div class="row">
+          <button id="add-player">+ Add person</button>
+          <button id="save-party" class="primary">Save</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Characters met so far</h3>
+        <div id="character-list" class="character-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <template id="session-template">
+    <article class="card session">
+      <div class="session-head">
+        <div>
+          <h3 class="s-title"></h3>
+          <span class="s-date muted"></span>
+        </div>
+        <span class="badge s-status"></span>
+      </div>
+      <p class="s-error error"></p>
+      <audio class="s-audio" controls preload="none"></audio>
+      <div class="s-actions row"></div>
+      <div class="s-speakers"></div>
+      <details class="s-transcript">
+        <summary>Transcript</summary>
+        <div class="transcript-lines"></div>
+      </details>
+    </article>
+  </template>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

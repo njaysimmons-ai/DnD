@@ -1,0 +1,27 @@
+{
+  "name": "table-chronicle",
+  "version": "1.0.0",
+  "description": "Record your D&D table, transcribe it, and let Claude turn each session into a playable visual story.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njaysimmons-ai/DnD.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/njaysimmons-ai/DnD/issues"
+  },
+  "homepage": "https://github.com/njaysimmons-ai/DnD#readme",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
+    "express": "^5.3.0",
+    "multer": "^2.4.0"
+  },
+  "type": "module",
+  "private": true
+}
