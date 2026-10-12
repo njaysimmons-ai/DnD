@@ -25,14 +25,14 @@ button:disabled { opacity: 0.5; cursor: wait; }
 .error:empty { display: none; }
 .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 12px 0; }
 
-.topbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--bg); z-index: 5; }
+.topbar { padding-top: max(12px, env(safe-area-inset-top)); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--bg); z-index: 5; }
 .topbar h1 { font-size: 20px; margin: 0; color: var(--gold); }
 nav { display: flex; gap: 6px; flex-wrap: wrap; }
 nav button, .nav-link { background: none; border: 1px solid transparent; padding: 6px 12px; border-radius: 8px; color: var(--muted); text-decoration: none; }
 nav button.active { color: var(--text); border-color: var(--line); background: var(--card); }
-.nav-link { color: var(--gold); }
+.nav-link { color: var(--gold); display: inline-flex; align-items: center; justify-content: center; }
 
-main { max-width: 860px; margin: 0 auto; padding: 16px; }
+main { max-width: 860px; margin: 0 auto; padding: 16px 16px max(24px, env(safe-area-inset-bottom)); }
 .tab { display: none; }
 .tab.active { display: block; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 16px; }
@@ -86,4 +86,25 @@ label.inline input { width: auto; }
 @media (max-width: 560px) {
   .roster-row { grid-template-columns: 1fr 1fr; }
   .speaker-row { grid-template-columns: 1fr; gap: 2px; }
+}
+
+/* Login */
+.login { min-height: 100vh; display: grid; place-items: center; }
+.login form { width: min(360px, 100%); display: grid; gap: 8px; }
+.login h1 { color: var(--gold); font-size: 24px; margin: 0 0 10px; text-align: center; }
+
+/* Phones: bigger tap targets, fewer cramped rows */
+@media (pointer: coarse) {
+  button, .button, input { min-height: 44px; }
+  nav button, .nav-link { padding: 10px 14px; }
+  .roster-row .r-remove { min-width: 44px; }
+}
+@media (max-width: 560px) {
+  .topbar { flex-direction: column; align-items: stretch; }
+  .topbar h1 { text-align: center; }
+  nav { justify-content: space-between; }
+  nav button, .nav-link { flex: 1; text-align: center; }
+  .s-actions button, .s-actions .button { flex: 1 1 auto; text-align: center; }
+  .card { padding: 14px; }
+  .session-head { flex-direction: column; gap: 6px; }
 }

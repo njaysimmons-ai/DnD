@@ -21,6 +21,7 @@ function escapeHtml(s) {
 // ---------- Tabs ----------
 
 function showTab(name) {
+  try { localStorage.setItem("tab", name); } catch {}
   document.querySelectorAll("nav button").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
   document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("active", t.id === `tab-${name}`));
   if (name === "sessions") refreshSessions();
@@ -451,3 +452,11 @@ $("#save-party").addEventListener("click", async () => {
   $("#save-party").textContent = "Saved ✓";
   setTimeout(() => ($("#save-party").textContent = "Save"), 1500);
 });
+
+// Open the tab from the link (#sessions) or the one used last time on this device.
+{
+  let saved = null;
+  try { saved = localStorage.getItem("tab"); } catch {}
+  const wanted = location.hash.slice(1) || saved;
+  if (["record", "sessions", "party"].includes(wanted)) showTab(wanted);
+}

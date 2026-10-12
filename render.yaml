@@ -1,0 +1,23 @@
+# One-click hosting on Render (https://render.com): New → Blueprint → pick this repo.
+# The disk keeps your recordings and campaign safe between restarts.
+services:
+  - type: web
+    name: table-chronicle
+    runtime: node
+    plan: starter
+    buildCommand: npm ci
+    startCommand: node server.js
+    healthCheckPath: /login.html
+    disk:
+      name: chronicle-data
+      mountPath: /var/data
+      sizeGB: 10
+    envVars:
+      - key: DATA_DIR
+        value: /var/data
+      - key: APP_PASSWORD
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ASSEMBLYAI_API_KEY
+        sync: false

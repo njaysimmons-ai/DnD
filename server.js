@@ -15,9 +15,12 @@ import {
 } from "./src/storage.js";
 import { startTranscription, checkTranscription, parsePastedTranscript } from "./src/transcribe.js";
 import { writeChapter, addChapter } from "./src/story.js";
+import { passwordLock } from "./src/auth.js";
 
 const app = express();
+app.set("trust proxy", 1); // so login cookies are marked Secure behind an https host
 app.use(express.json({ limit: "20mb" }));
+app.use(passwordLock(process.env.APP_PASSWORD));
 app.use(express.static("public"));
 
 const wrap = (fn) => (req, res, next) => fn(req, res).catch(next);
@@ -229,4 +232,5 @@ app.listen(port, () => {
   console.log(`Table Chronicle is running at http://localhost:${port}`);
   console.log(`Data is stored in ${DATA_DIR}`);
   if (!process.env.ANTHROPIC_API_KEY) console.log("Note: ANTHROPIC_API_KEY is not set yet (see .env.example).");
+  if (!process.env.APP_PASSWORD) console.log("Note: no APP_PASSWORD set, so anyone who can reach this address can use the app.");
 });

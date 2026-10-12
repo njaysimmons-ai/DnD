@@ -52,10 +52,40 @@ Want to see it first? Start the app (below) and click **Play ▶**. It shows a d
 
 ### Recording with a phone instead
 
-Browsers only let a page use the microphone on `localhost` or over `https`. So if the app runs on your laptop, a phone on the same Wi-Fi can't record through it directly. You have two easy options:
+Browsers only let a page use the microphone on `localhost` or over `https`. If you followed [Checking it from your phone](#checking-it-from-your-phone), your `https` address already works for recording. Otherwise:
 
 - **Use your phone's voice memo app**, then in **Sessions** tap **+ New session…** and **Upload audio**. Most formats work (m4a, mp3, wav, webm…).
 - Record on the laptop running the app, as described above.
+
+## Checking it from your phone
+
+The app works on phones. You can check whether a transcript or chapter is done, fix speaker names, and play chapters. On your phone's browser, tap **Share → Add to Home Screen** and it opens like a normal app.
+
+**First, set a password.** Add `APP_PASSWORD=something-only-your-group-knows` to `.env` and restart. Everyone then has to enter it once per device.
+
+Then pick how your phone reaches the app:
+
+| | **Option A: Tailscale** (free) | **Option B: Host it online** (about $7/month) |
+|---|---|---|
+| Works when | your PC is on | always, even with your PC off |
+| Setup | install an app on PC and phone | make an account and click a few buttons |
+| Phone can record | ✅ | ✅ |
+
+**Option A: Tailscale.** This makes a private, encrypted link between your own devices. Nothing is exposed to the public internet.
+1. Install Tailscale on your PC and your phone from <https://tailscale.com/download>, and sign in to both with the same account.
+2. With the app running on your PC, open a terminal and run:
+   ```bash
+   tailscale serve --bg 3000
+   ```
+3. It prints an address like `https://my-pc.tail1234.ts.net`. Open that on your phone (it works anywhere, not just at home) and add it to your home screen.
+
+**Option B: Host it on Render.** This keeps the app online all the time, with your data on a storage disk.
+1. Make an account at <https://render.com> and connect your GitHub.
+2. Choose **New → Blueprint** and pick this repository. It reads `render.yaml` and sets everything up.
+3. When asked, fill in `APP_PASSWORD`, `ANTHROPIC_API_KEY` and `ASSEMBLYAI_API_KEY`.
+4. Open the `https://….onrender.com` address it gives you on your phone.
+
+Both options give you an `https` address, so the phone's microphone works too. You could record a session straight from a phone in the middle of the table.
 
 ### Already have a transcript?
 
@@ -81,6 +111,7 @@ Back up that folder to keep your campaign safe. Audio is only sent to AssemblyAI
 
 - `server.js` is the small web server and background jobs.
 - `src/transcribe.js` handles AssemblyAI transcription with speaker labels, plus parsing pasted transcripts.
+- `src/auth.js` is the optional password lock (`APP_PASSWORD`).
 - `src/story.js` holds the Claude prompt and the chapter format (a JSON schema, so the output always fits the game).
 - `public/art.js` draws all the scenery and portraits as code, so no image generation is needed.
 - `public/play.js` is the visual-novel player.
